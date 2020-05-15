@@ -1,5 +1,6 @@
-install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
+library(readxl)
 
 d = read_xlsx("C:/Users/All Other Users/Documents/germdata/Germination_survey_field_data_withgermcolor_EEB.xlsx")
 
@@ -11,7 +12,9 @@ e=d %>%
 e$orange = as.numeric(e$orange.p)
 e$yellow = as.numeric(e$yellow.p)
 e$green = as.numeric(e$green.p)
+
 e$blue = as.numeric (e$blue.p)
+
 e$quadrat = as.character(e$quadrat)
 head(e)
 
@@ -24,6 +27,9 @@ f = e %>%
   group_by(plot, quadrat, color) %>%
   summarize('n'= max(colorcount, 
                      na.rm=TRUE))
+
+
+f$quadratnum = as.numeric(f$quadrat)
 
 
 potato = g %>%
