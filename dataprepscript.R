@@ -1,5 +1,6 @@
-install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
+library(readxl)
 
 d = read_xlsx("C:/Users/All Other Users/Documents/germdata/Germination_survey_field_data_20200413_EEB.xlsx")
 
@@ -25,11 +26,8 @@ f = e %>%
   summarize('n'= max(colorcount, 
                      na.rm=TRUE))
 
-# Dealing with absent 1/24 data for lower site`
-g = f %>%
-  filter(n != '-Inf')
-head(g)
-g$quadratnum = as.numeric(g$quadrat)
+
+f$quadratnum = as.numeric(f$quadrat)
 
 potato = g %>%
   uncount(n) %>%
